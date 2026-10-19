@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Admin Votify
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Votify
+        </div>
+
+        <div class="admin-label">
+            PANEL ADMIN
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-item active"
+                onclick="showSection('dashboard')"
+            >
+                📊 Dashboard
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showSection('students')"
+            >
+                👨‍🎓 Data Siswa
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showSection('candidates')"
+            >
+                🗳️ Paslon
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showSection('results')"
+            >
+                📈 Hasil Voting
+            </button>
+
+        </nav>
+
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Keluar
+        </button>
+
+    </aside>
+
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p>
+                    Kelola sistem voting Votify
+                </p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- DASHBOARD -->
+
+        <section
+            id="dashboardSection"
+            class="content-section active"
+        >
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Total Siswa
+                    </span>
+
+                    <strong
+                        id="totalStudents"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Sudah Voting
+                    </span>
+
+                    <strong
+                        id="totalVoted"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Belum Voting
+                    </span>
+
+                    <strong
+                        id="totalNotVoted"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Total Paslon
+                    </span>
+
+                    <strong
+                        id="totalCandidates"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>
+                    Ringkasan Voting
+                </h2>
+
+                <canvas
+                    id="voteChart"
+                ></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SISWA -->
+
+        <section
+            id="studentsSection"
+            class="content-section"
+        >
+
+            <div class="panel">
+
+
+                <div class="section-header">
+
+
+                    <div>
+
+                        <h2>
+                            Data Siswa
+                        </h2>
+
+                        <p>
+                            Daftar peserta voting
+                        </p>
+
+                    </div>
+
+
+                    <div class="button-group">
+
+
+                        <button
+                            class="secondary-button"
+                            onclick="printStudents()"
+                        >
+                            🖨️ Cetak Data Siswa
+                        </button>
+
+
+                        <button
+                            class="primary-button"
+                            onclick="openStudentModal()"
+                        >
+                            + Tambah Siswa
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    id="studentsList"
+                    class="table-wrapper"
+                ></div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PASLON -->
+
+        <section
+            id="candidatesSection"
+            class="content-section"
+        >
+
+            <div class="panel">
+
+
+                <div class="section-header">
+
+
+                    <div>
+
+                        <h2>
+                            Data Paslon
+                        </h2>
+
+                        <p>
+                            Kelola kandidat yang tampil
+                            pada halaman voting.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="openCandidateModal()"
+                    >
+                        + Tambah Paslon
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    id="candidatesList"
+                    class="candidate-admin-grid"
+                >
+
+                    <div class="loading">
+                        Memuat data Paslon...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- HASIL -->
+
+        <section
+            id="resultsSection"
+            class="content-section"
+        >
+
+            <div class="panel">
+
+
+                <div class="section-header">
+
+
+                    <div>
+
+                        <h2>
+                            Hasil Voting
+                        </h2>
+
+                        <p>
+                            Rekapitulasi suara setiap Paslon.
+                        </p>
+
+                    </div>
+
+
+                    <div class="button-group">
+
+
+                        <button
+                            class="secondary-button"
+                            onclick="printResults()"
+                        >
+                            🖨️ Cetak
+                        </button>
+
+
+                        <button
+                            class="danger-button"
+                            onclick="resetVoting()"
+                        >
+                            Reset Voting
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    id="resultsList"
+                    class="results-list"
+                ></div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- MODAL SISWA -->
+
+    <div
+        id="studentModal"
+        class="modal"
+    >
+
+        <div class="modal-box">
+
+
+            <div class="modal-header">
+
+                <h2>
+                    Tambah Siswa
+                </h2>
+
+
+                <button
+                    onclick="closeStudentModal()"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <form
+                id="studentForm"
+                onsubmit="addStudent(event)"
+            >
+
+
+                <label>
+                    Nama Siswa
+                </label>
+
+
+                <input
+                    id="studentName"
+                    type="text"
+                    required
+                >
+
+
+
+                <label>
+                    Kelas
+                </label>
+
+
+                <select
+                    id="studentClass"
+                    required
+                >
+
+                    <option value="">
+                        Pilih Kelas
+                    </option>
+
+
+                    <option value="XII TKJ">
+                        XII TKJ
+                    </option>
+
+
+                    <option value="XII TO 1">
+                        XII TO 1
+                    </option>
+
+                    <option value="XII TO 2">
+                        XII TO 2
+                    </option>
+
+                    <option value="XII MPLB">
+                        XII MPLB
+                    </option>
+
+                </select>
+
+
+
+                <div class="modal-actions">
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="closeStudentModal()"
+                    >
+                        Batal
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Simpan
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MODAL PASLON -->
+
+    <div
+        id="candidateModal"
+        class="modal"
+    >
+
+        <div class="modal-box">
+
+
+            <div class="modal-header">
+
+                <h2
+                    id="candidateModalTitle"
+                >
+                    Tambah Paslon
+                </h2>
+
+
+                <button
+                    onclick="closeCandidateModal()"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <form
+                id="candidateForm"
+                onsubmit="saveCandidate(event)"
+            >
+
+
+                <input
+                    id="candidateId"
+                    type="hidden"
+                >
+
+
+                <label>
+                    Nomor Paslon
+                </label>
+
+
+                <input
+                    id="candidateNumber"
+                    type="number"
+                    min="1"
+                    required
+                >
+
+
+                <label>
+                    Nama Ketua
+                </label>
+
+
+                <input
+                    id="candidateName"
+                    type="text"
+                    required
+                >
+
+
+                <label>
+                    Nama Wakil
+                </label>
+
+
+                <input
+                    id="candidateVice"
+                    type="text"
+                    required
+                >
+
+
+                <label>
+                    Foto Paslon
+                </label>
+
+
+                <input
+                    id="candidateImage"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onchange="previewCandidateImage(event)"
+                >
+
+
+                <small class="file-info">
+
+                    JPG, PNG, atau WEBP.
+                    Maksimal 5 MB.
+
+                </small>
+
+
+                <div
+                    id="candidateImagePreview"
+                    class="image-preview"
+                ></div>
+
+
+                <div class="modal-actions">
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="closeCandidateModal()"
+                    >
+                        Batal
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Simpan Paslon
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <script
+        src="script.js"
+    ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Votify - Login</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="login-container">
+
+
+        <!-- ==========================================
+             BRAND
+        =========================================== -->
+
+        <section class="brand">
+
+            <div class="brand-logo">
+                🗳️
+            </div>
+
+            <h1>
+                Votify
+            </h1>
+
+            <p>
+                Sistem Pemilihan Ketua & Wakil OSIS
+            </p>
+
+        </section>
+
+
+        <!-- ==========================================
+             LOGIN CARD
+        =========================================== -->
+
+        <section class="login-card">
+
+
+            <!-- ======================================
+                 LOGIN TABS
+            ======================================= -->
+
+            <div class="login-tabs">
+
+                <button
+                    type="button"
+                    id="studentTab"
+                    class="login-tab active"
+                    onclick="showLogin('student')"
+                >
+                    👨‍🎓 Login Siswa
+                </button>
+
+
+                <button
+                    type="button"
+                    id="adminTab"
+                    class="login-tab"
+                    onclick="showLogin('admin')"
+                >
+                    🛠️ Login Admin
+                </button>
+
+            </div>
+
+
+            <!-- ======================================
+                 LOGIN SISWA
+            ======================================= -->
+
+            <div
+                id="studentLogin"
+                class="login-form active"
+            >
+
+                <h2 class="login-title">
+                    Login Siswa
+                </h2>
+
+
+                <p class="login-description">
+                    Masukkan ID Siswa dan Token
+                    untuk masuk ke halaman voting.
+                </p>
+
+
+                <form
+                    id="studentForm"
+                    onsubmit="loginStudent(event)"
+                >
+
+
+                    <!-- ID SISWA -->
+
+                    <div class="form-group">
+
+                        <label for="studentCode">
+                            ID Siswa
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentCode"
+                            placeholder="Contoh: VTF001"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- TOKEN -->
+
+                    <div class="form-group">
+
+                        <label for="studentToken">
+                            Token
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentToken"
+                            placeholder="Contoh: SISWA01"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div
+                        id="studentError"
+                        class="login-error"
+                    ></div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Login
+                    </button>
+
+
+                </form>
+
+
+                <!-- INFO -->
+
+                <div class="login-info">
+
+                    Gunakan ID Siswa dan Token
+                    yang diberikan oleh admin.
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 LOGIN ADMIN
+            ======================================= -->
+
+            <div
+                id="adminLogin"
+                class="login-form"
+            >
+
+                <h2 class="login-title">
+                    Login Admin
+                </h2>
+
+
+                <p class="login-description">
+                    Masukkan username dan password
+                    untuk membuka dashboard admin.
+                </p>
+
+
+                <form
+                    id="adminForm"
+                    onsubmit="loginAdmin(event)"
+                >
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label for="adminUsername">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="adminUsername"
+                            placeholder="Username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="adminPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="adminPassword"
+                            placeholder="Password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div
+                        id="adminError"
+                        class="login-error"
+                    ></div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Login
+                    </button>
+
+
+                </form>
+
+
+                <!-- INFO -->
+
+                <div class="login-info">
+
+                    Halaman ini khusus untuk
+                    administrator Votify.
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==========================================
+             FOOTER
+        =========================================== -->
+
+        <footer class="login-footer">
+
+            <p>
+                © 2026 Votify
+            </p>
+
+            <p>
+                Sistem Voting Digital
+            </p>
+
+        </footer>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

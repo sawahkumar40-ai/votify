@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Votify - Voting</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <header class="voting-header">
+
+        <div>
+            <h1>Votify</h1>
+
+            <p>
+                Pemilihan Ketua & Wakil OSIS
+            </p>
+        </div>
+
+        <button
+            class="logout-button"
+            onclick="logoutStudent()"
+        >
+            Keluar
+        </button>
+
+    </header>
+
+
+    <main class="voting-container">
+
+        <!-- INFO SISWA -->
+
+        <section class="student-info">
+
+            <h2>
+                Selamat datang,
+                <span id="studentName">
+                    Siswa
+                </span>
+            </h2>
+
+            <div class="student-detail">
+
+                <span>
+                    NISN:
+                    <strong id="studentNisn">
+                        -
+                    </strong>
+                </span>
+
+                <span>
+                    Kelas:
+                    <strong id="studentClass">
+                        -
+                    </strong>
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- JUDUL -->
+
+        <section class="voting-title">
+
+            <h2>
+                Pilih Pasangan Calon
+            </h2>
+
+            <p>
+                Pilih satu Paslon yang menurut
+                kamu paling tepat.
+            </p>
+
+        </section>
+
+
+        <!-- DAFTAR PASLON -->
+
+        <section
+            id="candidatesList"
+            class="candidates-grid"
+        >
+
+            <div class="loading">
+                Memuat Paslon...
+            </div>
+
+        </section>
+
+
+        <!-- TOMBOL VOTING -->
+
+        <section class="vote-section">
+
+            <button
+                id="voteButton"
+                class="vote-button"
+                onclick="submitVote()"
+                disabled
+            >
+                Pilih Paslon Terlebih Dahulu
+            </button>
+
+        </section>
+
+
+        <!-- PESAN -->
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+    </main>
+
+
+    <!-- MODAL KONFIRMASI -->
+
+    <div
+        id="confirmModal"
+        class="modal"
+    >
+
+        <div class="modal-box">
+
+            <h2>
+                Konfirmasi Pilihan
+            </h2>
+
+            <p>
+                Kamu memilih:
+            </p>
+
+            <div
+                id="selectedCandidate"
+                class="selected-candidate"
+            ></div>
+
+            <p class="warning-text">
+                Pastikan pilihanmu sudah benar.
+                Suara yang sudah dikirim tidak
+                dapat digunakan kembali.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-button"
+                    onclick="closeConfirmModal()"
+                >
+                    Batal
+                </button>
+
+                <button
+                    class="confirm-button"
+                    onclick="confirmVote()"
+                >
+                    Ya, Kirim Suara
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
